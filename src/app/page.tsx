@@ -1,6 +1,5 @@
 // src/app/page.tsx
 import "./globals.css";
-import { TOPICS } from "@/data/topics";
 
 export const metadata = {
   title: "English Flip Cards",
