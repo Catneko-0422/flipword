@@ -2,7 +2,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import FlipDeck from "@/components/FlipDeck";
-import type { Topic } from "@/data/topics";
+import type { Topic, Vocab } from "@/data/topics";
 
 const LS_KEY = "topicsOverride";
 
@@ -23,5 +23,5 @@ export default function TopicClient({ slug, initial }: { slug: string; initial: 
 
   if (!topic) return <div className="mut">找不到主題</div>;
 
-  return <FlipDeck words={topic.words as any} />;
+  return <FlipDeck words={topic.words as Vocab[]} />;
 }
