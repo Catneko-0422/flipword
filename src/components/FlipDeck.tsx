@@ -138,9 +138,6 @@ export default function FlipDeck({ words }: { words: Vocab[] }) {
           上一張
         </button>
         <div className="row" role="group" aria-label="顯示模式">
-          <button className="btn" onClick={toggleMode} style={{ marginLeft: 8 }}>
-            切換（M）
-          </button>
           <button className="btn" onClick={flip} style={{ marginLeft: 8 }}>
             翻面
           </button>
