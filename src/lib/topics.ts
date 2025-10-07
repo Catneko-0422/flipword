@@ -1,18 +1,13 @@
 import type { Topic, TopicsDocument } from "@/lib/types";
 import { seedTopics } from "@/data/topics";
-import { isKvEnabled } from "@/lib/env";
+import { getRedisClient } from "@/lib/redis";
 import { revalidatePath } from "next/cache";
 
-type KvClient = {
-  get<T>(key: string): Promise<T | null>;
-  set(key: string, value: unknown): Promise<unknown>;
-};
-
-const KV_KEY = "topics-document";
+const REDIS_KEY = "flipword:topics-document";
 
 declare global {
+  // eslint-disable-next-line no-var
   var __topicsCache__: TopicsDocument | undefined;
-  var __topicsKvClient__: KvClient | null | undefined;
 }
 
 function getMemoryStore(): TopicsDocument {
@@ -26,32 +21,6 @@ function setMemoryStore(doc: TopicsDocument) {
   globalThis.__topicsCache__ = doc;
 }
 
-async function getKvClient(): Promise<KvClient | null> {
-  if (globalThis.__topicsKvClient__ !== undefined) {
-    return globalThis.__topicsKvClient__;
-  }
-  if (!isKvEnabled()) {
-    globalThis.__topicsKvClient__ = null;
-    return null;
-  }
-  const mod = await import("@vercel/kv");
-  globalThis.__topicsKvClient__ = mod.kv;
-  return mod.kv;
-}
-
-async function readFromKv(): Promise<TopicsDocument | null> {
-  const kv = await getKvClient();
-  if (!kv) return null;
-  const doc = await kv.get<TopicsDocument>(KV_KEY);
-  return doc ?? null;
-}
-
-async function writeToKv(doc: TopicsDocument): Promise<void> {
-  const kv = await getKvClient();
-  if (!kv) return;
-  await kv.set(KV_KEY, doc);
-}
-
 function cloneDoc(doc: TopicsDocument): TopicsDocument {
   return {
     topics: doc.topics.map((topic) => ({
@@ -61,20 +30,54 @@ function cloneDoc(doc: TopicsDocument): TopicsDocument {
   };
 }
 
+async function readFromRedis(): Promise<TopicsDocument | null> {
+  const client = await getRedisClient();
+  if (!client) return null;
+
+  try {
+    const raw = await client.get(REDIS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as TopicsDocument;
+    if (!parsed || !Array.isArray(parsed.topics)) {
+      throw new Error("Invalid topics payload in Redis");
+    }
+    return parsed;
+  } catch (error) {
+    console.error("[topics] Failed to read from Redis:", error);
+    return null;
+  }
+}
+
+async function writeToRedis(doc: TopicsDocument): Promise<void> {
+  const client = await getRedisClient();
+  if (!client) return;
+
+  try {
+    await client.set(REDIS_KEY, JSON.stringify(doc));
+  } catch (error) {
+    console.error("[topics] Failed to write to Redis:", error);
+  }
+}
+
 export async function loadTopicsDocument(): Promise<TopicsDocument> {
-  const kvDoc = await readFromKv();
-  if (kvDoc) {
-    setMemoryStore(kvDoc);
-    return cloneDoc(kvDoc);
+  const redisDoc = await readFromRedis();
+  if (redisDoc) {
+    setMemoryStore(redisDoc);
+    return cloneDoc(redisDoc);
   }
   const mem = getMemoryStore();
+  try {
+    await writeToRedis(mem);
+  } catch (error) {
+    console.error("[topics] Failed to seed Redis with initial data:", error);
+  }
   return cloneDoc(mem);
 }
 
 export async function saveTopicsDocument(doc: TopicsDocument): Promise<void> {
   const snapshot = cloneDoc(doc);
   setMemoryStore(snapshot);
-  await writeToKv(snapshot);
+  await writeToRedis(snapshot);
 }
 
 export async function listTopics(): Promise<Topic[]> {

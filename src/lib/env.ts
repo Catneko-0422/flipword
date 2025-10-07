@@ -33,6 +33,10 @@ export function isProduction(): boolean {
   return process.env.NODE_ENV === "production";
 }
 
-export function isKvEnabled(): boolean {
-  return Boolean(process.env.KV_REST_API_URL);
+export function getRedisUrl(): string | null {
+  return process.env.REDIS_URL ?? null;
+}
+
+export function isRedisEnabled(): boolean {
+  return Boolean(getRedisUrl());
 }
