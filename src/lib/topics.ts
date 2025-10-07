@@ -11,9 +11,7 @@ type KvClient = {
 const KV_KEY = "topics-document";
 
 declare global {
-  // eslint-disable-next-line no-var
   var __topicsCache__: TopicsDocument | undefined;
-  // eslint-disable-next-line no-var
   var __topicsKvClient__: KvClient | null | undefined;
 }
 

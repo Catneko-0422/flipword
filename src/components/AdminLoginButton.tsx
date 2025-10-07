@@ -91,7 +91,7 @@ export default function AdminLoginButton({
       setTimeout(() => {
         window.location.reload();
       }, 600);
-    } catch (error) {
+    } catch {
       setStatus("error");
       setMessage("登入失敗");
     }
