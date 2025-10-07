@@ -1,0 +1,106 @@
+{
+  "topics": [
+    {
+      "slug": "exam-1",
+      "title": "word bank(exam-1)",
+      "words": [
+        {
+          "id": "8c3f6c1a-6f5c-4a72-9eb2-0fdc4713a301",
+          "en": "start-up",
+          "zh": "新創公司",
+          "pos": "n.",
+          "enSent": "Jack's small start-up evolved into a successful tech company.",
+          "zhSent": "傑克的小型新創公司逐漸發展成一家成功的科技公司。"
+        },
+        {
+          "id": "6d8ac5bb-3f7a-4c88-a6c1-84049c1d0ca4",
+          "en": "specialize",
+          "zh": "專攻；專門從事",
+          "pos": "v.",
+          "enSent": "In most countries' education systems, students specialize more as they get older.",
+          "zhSent": "在多數國家的教育體系中，學生隨著年齡增長會更趨於專攻。"
+        },
+        {
+          "id": "c670f3e9-6a26-4dff-8480-81c12d748b63",
+          "en": "target",
+          "zh": "鎖定；以…為目標",
+          "pos": "v.",
+          "enSent": "The fast-food restaurant targeted young children by offering a free toy.",
+          "zhSent": "那家速食餐廳透過提供免費玩具，把年幼兒童作為目標。"
+        },
+        {
+          "id": "1b6074bf-d468-4b65-9b6a-4315ffabe3e1",
+          "en": "range",
+          "zh": "範圍；幅度",
+          "pos": "n.",
+          "enSent": "Matt is looking to buy a phone in the two- to three-thousand-dollar price range.",
+          "zhSent": "馬特打算購買一支落在兩到三千美元價位範圍的手機。"
+        },
+        {
+          "id": "a3f97a7d-861c-4f5c-8c77-d72ef6711b6b",
+          "en": "brand awareness",
+          "zh": "品牌知名度",
+          "pos": "n.",
+          "enSent": "The company invested more money into social media in an attempt to increase brand awareness.",
+          "zhSent": "該公司投入更多社群媒體的資金，試圖提高品牌知名度。"
+        },
+        {
+          "id": "ad7df4b6-2e08-4cda-9f22-52b4e558bd49",
+          "en": "channel",
+          "zh": "管道；途徑",
+          "pos": "n.",
+          "enSent": "Selling online has become very popular, but companies still need to pay close attention to traditional sales channels, too.",
+          "zhSent": "線上銷售變得很受歡迎，但企業仍須密切注意傳統的銷售管道。"
+        },
+        {
+          "id": "7a395824-b52a-459e-8bf5-dcc4f6259ffb",
+          "en": "promotional",
+          "zh": "促銷的；宣傳的",
+          "pos": "adj.",
+          "enSent": "Our marketing department will create promotional material to advertise the new product.",
+          "zhSent": "我們的行銷部門會製作宣傳素材來為這項新產品做廣告。"
+        },
+        {
+          "id": "98d58a1d-605d-441a-8b87-95940a7bf610",
+          "en": "campaign",
+          "zh": "活動；運動",
+          "pos": "n.",
+          "enSent": "The government ran a campaign to clean up the city.",
+          "zhSent": "政府發起了一項清理城市的活動。"
+        },
+        {
+          "id": "5cb6e9b8-688d-4f19-8d7a-ae8c70764f63",
+          "en": "collaborator",
+          "zh": "合作者；協作者",
+          "pos": "n.",
+          "enSent": "The director thanked the movie's many collaborators in his acceptance speech for the award.",
+          "zhSent": "導演在上台領獎致詞時感謝了這部電影的眾多合作者。"
+        },
+        {
+          "id": "6f13c2f9-316f-4e6a-9cd4-dead3b0fdc7c",
+          "en": "supervise",
+          "zh": "監督；指導",
+          "pos": "v.",
+          "enSent": "All of the workers needed to be supervised closely to make sure things were done safely in the factory.",
+          "zhSent": "所有工人都需要被緊密監督，以確保工廠內的作業安全。"
+        },
+        {
+          "id": "88511327-a652-4dd8-a0b5-f183fc420d05",
+          "en": "conduct",
+          "zh": "進行；實施",
+          "pos": "v.",
+          "enSent": "The scientists conducted experiments to try and find a cure.",
+          "zhSent": "科學家們進行了實驗，試圖尋找治療方法。"
+        },
+        {
+          "id": "9449c6d4-ccc3-422f-89df-b4d0c3dc55ff",
+          "en": "competitive",
+          "zh": "有競爭力的；競爭性的",
+          "pos": "adj.",
+          "enSent": "The product's competitive pricing made it popular with consumers on limited budgets.",
+          "zhSent": "這款產品具有競爭力的定價，使它在預算有限的消費者之間大受歡迎。"
+        }
+      ]
+    }
+  ]
+}
